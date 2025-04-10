@@ -7,4 +7,4 @@ class BaseProduct(BaseModel):
 class BaseFilm(BaseModel):
     id: int = Field(example = 1)
     name: str = Field(example = 'Название фильма')
-    rating: int = Field(gt = 0, example = 9)
+    rating: int = Field(example = 9)

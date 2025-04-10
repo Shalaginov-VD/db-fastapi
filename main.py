@@ -63,10 +63,19 @@ def create_film(film: pyd.CreateFilm, db: Session = Depends(get_db)):
     return film_db
 
 @app.delete('/product/{product_id}')
-def delete_product(product: int, db: Session = Depends(get_db)):
-    product = db.query(m.Product).filter(m.Product.id == product.id).first()
+def delete_product(product_id: int, db: Session = Depends(get_db)):
+    product = db.query(m.Product).filter(m.Product.id == product_id).first()
     if not product:
         raise HTTPException(404, 'Товар не найден')
     db.delete(product)
     db.commit()
     return {'msg': 'Товар удален'}
+
+@app.delete('/film/{film_id}')
+def delete_film(film_id: int, db: Session = Depends(get_db)):
+    film = db.query(m.Film).filter(m.Film.id == film_id).first()
+    if not film:
+        raise HTTPException(404, 'Фильм не найден')
+    db.delete(film)
+    db.commit()
+    return {'msg': 'Фильм удален'}
