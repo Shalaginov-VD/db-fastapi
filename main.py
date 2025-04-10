@@ -7,7 +7,7 @@ import pyd
 
 app = FastAPI()
 
-@app.get('/product', response_model = List[pyd.BaseProduct])
+@app.get('/product', response_model = List[pyd.SchemaProduct])
 def get_all_product(db: Session = Depends(get_db)):
     products = db.query(m.Product).all()
     return products
